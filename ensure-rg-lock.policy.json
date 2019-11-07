@@ -1,0 +1,76 @@
+{
+    "properties": {
+        "displayName": "Ensure ResourceGroup lock",
+        "policyType": "Custom",
+        "mode": "All",
+        "description": "Audit and deploy resource group lock",
+        "metadata": {
+            "category": "Resource Group",
+            "createdBy": "10e84020-2c14-449d-9e08-8279747f04a9",
+            "createdOn": "2019-11-05T13:55:36.9830962Z",
+            "updatedBy": "10e84020-2c14-449d-9e08-8279747f04a9",
+            "updatedOn": "2019-11-07T09:43:16.3818452Z"
+        },
+        "parameters": {
+            "effect": {
+                "type": "String",
+                "metadata": {
+                    "displayName": "Effect Name",
+                    "description": "The Effect to apply"
+                },
+                "allowedValues": [
+                    "AuditIfNotExists",
+                    "DeployIfNotExists"
+                ],
+                "defaultValue": "AuditIfNotExists"
+            }
+        },
+        "policyRule": {
+            "if": {
+                "allOf": [
+                    {
+                        "field": "type",
+                        "equals": "Microsoft.Resources/subscriptions/resourceGroups"
+                    }
+                ]
+            },
+            "then": {
+                "effect": "[parameters('effect')]",
+                "details": {
+                    "type": "Microsoft.Authorization/locks",
+                    "existenceCondition": {
+                        "field": "Microsoft.Authorization/locks/level",
+                        "equals": "CanNotDelete"
+                    },
+                    "roleDefinitionIds": [
+                        "/providers/Microsoft.Authorization/roleDefinitions/18d7d88d-d35e-4fb5-a5c3-7773c20a72d9",
+                        "/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c"
+                    ],
+                    "deployment": {
+                        "properties": {
+                            "mode": "incremental",
+                            "template": {
+                                "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+                                "contentVersion": "1.0.0.0",
+                                "resources": [
+                                    {
+                                        "type": "Microsoft.Authorization/locks",
+                                        "apiVersion": "2015-01-01",
+                                        "name": "RGLock",
+                                        "properties": {
+                                            "level": "CannotDelete",
+                                            "notes": "Policy added resource group lock to avoid deletion"
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "id": "/providers/Microsoft.Management/managementGroups/utp-platform/providers/Microsoft.Authorization/policyDefinitions/439f7462-0a01-4a75-8516-9eff68a74c3b",
+    "type": "Microsoft.Authorization/policyDefinitions",
+    "name": "439f7462-0a01-4a75-8516-9eff68a74c3b"
+}
