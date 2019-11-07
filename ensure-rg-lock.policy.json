@@ -1,16 +1,11 @@
 {
+    "type": "Microsoft.Authorization/policyDefinitions",
+    "name": "RG-LOCK-DEPLOY",
     "properties": {
         "displayName": "Ensure ResourceGroup lock",
         "policyType": "Custom",
         "mode": "All",
         "description": "Audit and deploy resource group lock",
-        "metadata": {
-            "category": "Resource Group",
-            "createdBy": "10e84020-2c14-449d-9e08-8279747f04a9",
-            "createdOn": "2019-11-05T13:55:36.9830962Z",
-            "updatedBy": "10e84020-2c14-449d-9e08-8279747f04a9",
-            "updatedOn": "2019-11-07T09:43:16.3818452Z"
-        },
         "parameters": {
             "effect": {
                 "type": "String",
@@ -69,8 +64,5 @@
                 }
             }
         }
-    },
-    "id": "/providers/Microsoft.Management/managementGroups/utp-platform/providers/Microsoft.Authorization/policyDefinitions/439f7462-0a01-4a75-8516-9eff68a74c3b",
-    "type": "Microsoft.Authorization/policyDefinitions",
-    "name": "439f7462-0a01-4a75-8516-9eff68a74c3b"
+    }
 }
