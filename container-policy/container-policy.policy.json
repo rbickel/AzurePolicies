@@ -44,19 +44,32 @@
                         "properties": {
                             "mode": "incremental",
                             "template": {
-                                "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+                                "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
                                 "contentVersion": "1.0.0.0",
+                                "parameters": {
+                                    "containerName": {
+                                        "type": "string"
+                                    }
+                                },
                                 "resources": [
                                     {
-                                        "name": "[concat(field('name'), '/immutabilityPolicies/default')]",
+                                        "name": "[concat(parameters('storageName'),'/default/',parameters('containerName'),'/default')]",
                                         "type": "Microsoft.Storage/storageAccounts/blobServices/containers/immutabilityPolicies",
-                                        "apiVersion": "2018-02-01",
+                                        "apiVersion": "2019-04-01",
                                         "properties": {
                                             "immutabilityPeriodSinceCreationInDays": "7"
                                         }
                                     }
                                 ]
                             }
+                        }
+                    },
+                    "parameters": {
+                        "containerName": {
+                            "value": "[field('name')]"
+                        },
+                        "storageName": {
+                            "value": "rabickelpolicytest"
                         }
                     }
                 }
