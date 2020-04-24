@@ -49,6 +49,9 @@
                                 "parameters": {
                                     "containerName": {
                                         "type": "string"
+                                    },
+                                    "storageName": {
+                                        "type": "string"
                                     }
                                 },
                                 "resources": [
