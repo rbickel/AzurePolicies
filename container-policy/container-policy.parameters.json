@@ -1,0 +1,14 @@
+{
+    "effect": {
+        "type": "String",
+        "metadata": {
+            "displayName": "Effect Name",
+            "description": "The Effect to apply"
+        },
+        "allowedValues": [
+            "AuditIfNotExists",
+            "DeployIfNotExists"
+        ],
+        "defaultValue": "AuditIfNotExists"
+    }
+}
