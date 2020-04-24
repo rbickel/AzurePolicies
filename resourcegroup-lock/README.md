@@ -9,7 +9,7 @@ Ensure a CannotDelete lock is create for Resource Groups within the scope
 ## Try with PowerShell
 
 ````powershell
-$definition = New-AzPolicyDefinition -Name "ensure-rg-lock" -DisplayName "Ensure a CannotDelete lock" -description "Ensure a CannotDelete lock is create for Resource Groups within the scope" -Policy 'https://raw.githubusercontent.com/rbickel/AzurePolicies/master/resourcegroup-lock/ensure-rg-lock.policy.json' -Parameter 'https://raw.githubusercontent.com/rbickel/AzurePolicies/master/resourcegroup-lock/ensure-rg-lock.parameters.json' -Mode All
+$definition = New-AzPolicyDefinition -Name "ensure-rg-lock" -DisplayName "Ensure a CannotDelete lock" -description "Ensure a CannotDelete lock is create for Resource Groups within the scope" -Policy 'https://raw.githubusercontent.com/rbickel/AzurePolicies/master/resourcegroup-lock/ensure-rg-lock.rules.json' -Parameter 'https://raw.githubusercontent.com/rbickel/AzurePolicies/master/resourcegroup-lock/ensure-rg-lock.parameters.json' -Mode All
 $definition
 $assignment = New-AzPolicyAssignment -Name <assignmentname> -Scope <scope>  -PolicyDefinition $definition
 $assignment 
